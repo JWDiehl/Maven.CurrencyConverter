@@ -4,14 +4,14 @@ import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class Pound implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.POUND.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.POUND) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.POUND.getRate();
     }
 
     @Override

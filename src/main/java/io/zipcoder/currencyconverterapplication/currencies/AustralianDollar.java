@@ -5,16 +5,14 @@ import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class AustralianDollar implements ConvertableCurrency {
 
-    //Returns the exchange rate of Australian Dollar to the Universal Currency
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.AUSTRALIAN_DOLLAR.getRate();
-    }
 
-    //Converts the amount from Australian Dollar to the target currency
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.AUSTRALIAN_DOLLAR) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.AUSTRALIAN_DOLLAR.getRate();
     }
 
     @Override

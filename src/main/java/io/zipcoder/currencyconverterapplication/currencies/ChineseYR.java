@@ -6,18 +6,18 @@ import io.zipcoder.currencyconverterapplication.CurrencyType;
 import java.util.Currency;
 
 public class ChineseYR implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.CHINESE_YR.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.CHINESE_YR) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.CHINESE_YR.getRate();
     }
 
     @Override
     public CurrencyType getCurrencyType() {
-        return CurrencyType.AUSTRALIAN_DOLLAR;
+        return CurrencyType.CHINESE_YR;
     }
 }

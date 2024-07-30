@@ -1,6 +1,11 @@
 package io.zipcoder.currencyconverterapplication;
 
-public enum CurrencyType {
+import io.zipcoder.currencyconverterapplication.currencies.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public enum CurrencyType implements ConvertableCurrency {
     AUSTRALIAN_DOLLAR(2.70),
     CANADIAN_DOLLAR(2.64),
     CHINESE_YR(13.84),
@@ -24,8 +29,34 @@ public enum CurrencyType {
         return rate;
     }
 
+    static final Map<ConvertableCurrency,CurrencyType> convert = new HashMap<>();
+
+
+    static {
+        convert.put(new AustralianDollar(), AUSTRALIAN_DOLLAR);
+        convert.put(new CanadianDollar(), CANADIAN_DOLLAR);
+        convert.put(new ChineseYR(), CHINESE_YR);
+        convert.put(new Euro(), EURO);
+        convert.put(new Franc(), FRANC);
+        convert.put(new Pound(),POUND);
+        convert.put(new Ringgit(),RINGGIT);
+        convert.put(new Rupee(),RUPEE);
+        convert.put(new SingaporeDollar(),SINGAPORE_DOLLAR);
+        convert.put(new USDollar(),US_DOLLAR);
+        convert.put(new UniversalCurrency(),UNIVERSAL_CURRENCY);
+        convert.put(new Yen(),YEN);
+
+
+    }
+
+
     public static CurrencyType getTypeOfCurrency(ConvertableCurrency currency) {
 
-        return currency.getCurrencyType();
+        return convert.get(currency);
+    }
+
+    @Override
+    public CurrencyType getCurrencyType() {
+        return null;
     }
 }

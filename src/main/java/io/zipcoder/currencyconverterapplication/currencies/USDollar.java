@@ -4,15 +4,14 @@ import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class USDollar implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.US_DOLLAR.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        double amountInUniversal = amount / this.getExchangeRate(); //Convert to universal currency
-        return amountInUniversal * toCurrency.getExchangeRate(); //Convert from universal currency to target currency
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.US_DOLLAR) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.US_DOLLAR.getRate();
     }
 
     @Override

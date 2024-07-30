@@ -4,14 +4,14 @@ import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class CanadianDollar implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.CANADIAN_DOLLAR.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.CANADIAN_DOLLAR) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.CANADIAN_DOLLAR.getRate();
     }
 
     @Override

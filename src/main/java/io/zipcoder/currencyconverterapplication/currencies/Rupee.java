@@ -4,14 +4,14 @@ import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class Rupee implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.RUPEE.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.RUPEE) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.RUPEE.getRate();
     }
 
     @Override

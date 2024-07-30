@@ -4,14 +4,14 @@ import io.zipcoder.currencyconverterapplication.ConvertableCurrency;
 import io.zipcoder.currencyconverterapplication.CurrencyType;
 
 public class UniversalCurrency implements ConvertableCurrency {
-    @Override
-    public double getExchangeRate() {
-        return CurrencyType.UNIVERSAL_CURRENCY.getRate();
-    }
 
     @Override
-    public double convert(double amount, ConvertableCurrency toCurrency) {
-        return amount * (toCurrency.getExchangeRate() / this.getExchangeRate());
+    public Double convert(CurrencyType currencyType) {
+        if (currencyType == CurrencyType.UNIVERSAL_CURRENCY) {
+            return 1.0;
+        }
+
+        return currencyType.getRate() / CurrencyType.UNIVERSAL_CURRENCY.getRate();
     }
 
     @Override
